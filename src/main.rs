@@ -2,6 +2,7 @@ mod dao;
 mod controller;
 mod logs;
 mod service;
+mod error;
 
 use salvo::prelude::{Server, TcpListener};
 use tracing::{span, info, Level};
