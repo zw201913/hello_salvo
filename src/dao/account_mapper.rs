@@ -12,11 +12,14 @@ pub struct AccountMapper;
 
 impl AccountMapper {
     pub fn get_by_id(id: &str) -> Option<Account> {
+        // 获取数据库链接
         let mut conn = get_connect();
+        // 根据id查询账号信息
         let query_result = conn.exec_first("select id,account,password,enabled,create_time,modify_time from account where id=:id", params!("id"=>id))
             .map(|row| {
                 row.map(|(id, account, password, enabled, create_time, modify_time)| Account { id, account, password, enabled, create_time, modify_time })
             });
+        // 判断是否查询到数据
         match query_result {
             Ok(result) => {
                 result
@@ -28,11 +31,13 @@ impl AccountMapper {
     }
 
     pub fn insert(account: &str, password: &str) -> Result<u64, GlobalError> {
+        // 获取数据库链接
         let mut conn = get_connect();
-        let id = Uuid.new_v4();
+        // 执行插入语句，目前id写死，后续会修改
         let x = match "insert into account (id,account,password,enabled,create_time,modify_time) values (?,?,?,1,now(),now())"
-            .with((id, account, password))
+            .with(("123456", account, password))
             .run(&mut conn) {
+            // 返回受影响的数据行数
             Ok(res) => {
                 Ok(res.affected_rows())
             }
