@@ -6,7 +6,7 @@ pub struct Account {
     pub id: String,
     pub account: String,
     pub password: String,
-    pub enable: i32,
+    pub enabled: i32,
     pub create_time: NaiveDateTime,
     pub modify_time: NaiveDateTime,
 }

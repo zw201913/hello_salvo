@@ -4,11 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 #web框架
 salvo = "0.27.0"
 tokio = { version = "1", features = ["macros"] }
+
+uuid = {version="1.1.2",featires = ["v4","fast-rng","macro-diagnostics"]}
 # 序列化工具
 serde = "1.0.140"
 #日志依赖
