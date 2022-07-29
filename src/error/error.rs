@@ -32,7 +32,7 @@ impl GlobalError {
     pub fn write(self, res: &mut Response) {
         let statusCode = StatusCode::from_u16(self.code);
         match statusCode {
-            InvalidStatusCode => {
+            Err(_) => {
                 res.set_status_code(StatusCode::OK);
             }
             Ok(code) => {
