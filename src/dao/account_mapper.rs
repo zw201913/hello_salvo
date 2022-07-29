@@ -4,8 +4,6 @@ use crate::dao::mysql_conn_pool::get_connect;
 use crate::dao::po::account::Account;
 use tracing::error;
 use std::error::Error;
-use tracing_subscriber::util::SubscriberInitExt;
-use uuid::Uuid;
 use crate::error::error::GlobalError;
 
 pub struct AccountMapper;
@@ -43,7 +41,7 @@ impl AccountMapper {
             }
             Err(e) => {
                 // error!(e);
-                Err(GlobalError::new("创建账号失败", e.to_string().as_str()))
+                Err(GlobalError::new(200, "创建账号失败", e.to_string().as_str()))
             }
         };
         x

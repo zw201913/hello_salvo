@@ -11,7 +11,7 @@ tokio = { version = "1", features = ["macros"] }
 # 序列化工具
 serde = "1.0.140"
 
-uuid = {version="1.1.2",featires = ["v4","fast-rng","macro-diagnostics"]}
+uuid = { version = "1.1.2", featires = ["v4", "stdweb", "fast-rng", "macro-diagnostics"] }
 
 #日志依赖
 tracing = "0.1.35"
