@@ -22,11 +22,7 @@ impl GlobalError {
     }
 
     pub fn bad_request(msg: &str, error: &str) -> GlobalError {
-        GlobalError {
-            code: StatusCode::BAD_REQUEST.as_u16(),
-            msg: String::from(msg),
-            error: String::from(error),
-        }
+        GlobalError::new(StatusCode::BAD_REQUEST.as_u16(), msg, error)
     }
 
     pub fn write(self, res: &mut Response) {
@@ -46,7 +42,6 @@ impl GlobalError {
 #[async_trait]
 impl Writer for GlobalError {
     async fn write(self, _req: &mut Request, _depot: &mut Depot, res: &mut Response) {
-        res.set_status_code(StatusCode::INTERNAL_SERVER_ERROR);
-        res.render(Json(self));
+        self.write(res);
     }
 }

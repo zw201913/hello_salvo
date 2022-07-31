@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::error::Error;
 use std::path::Path;
 use salvo::prelude::{Request, Response, Router, handler, Json, Extractible};
 use salvo::http::header::{self, HeaderValue};
@@ -24,10 +25,13 @@ async fn upload(file_name: FileName, req: &mut Request, res: &mut Response) {
     if let Some(file) = file {
         // 目标路径
         let dest_file = format!("/Users/zouwei/Desktop/{}", &file.name().unwrap());
-        if let Ok(x) = std::fs::copy(&file.path(), Path::new(&dest_file)) {
-            res.render(format!("id:{} \nfile_name:{}  \n文件上传成功：{}", id, file_name.name, &dest_file));
-        } else {
-            GlobalError::new(500, "file store failure", "file store failure").write(res);
+        match std::fs::copy(&file.path(), Path::new(&dest_file)) {
+            Ok(_) => {
+                res.render(format!("id:{} \nfile_name:{}  \n文件上传成功：{}", id, file_name.name, &dest_file));
+            }
+            Err(e) => {
+                GlobalError::new(500, "file store failure", e.description()).write(res);
+            }
         }
     } else {
         GlobalError::bad_request("file not found in request", "file not found in request").write(res);
