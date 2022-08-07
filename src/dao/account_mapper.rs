@@ -2,8 +2,6 @@ use mysql::prelude::{BinQuery, Queryable, WithParams};
 use mysql::params;
 use crate::dao::mysql_conn_pool::get_connect;
 use crate::dao::po::account::Account;
-use tracing::error;
-use std::error::Error;
 use crate::error::error::GlobalError;
 
 pub struct AccountMapper;

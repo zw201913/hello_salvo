@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::error::Error;
 use std::path::Path;
 use salvo::prelude::{Request, Response, Router, handler, Json, Extractible};
