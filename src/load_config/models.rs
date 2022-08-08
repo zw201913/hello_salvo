@@ -3,6 +3,17 @@ use serde::{Serialize, Deserialize};
 #[derive(Serialize, Deserialize, Debug)]
 pub struct GlobalConfig {
     pub mysql: Mysql,
+    pub application: Application,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Application {
+    pub server: Server,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Server {
+    pub port: usize,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

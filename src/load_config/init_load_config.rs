@@ -33,3 +33,21 @@ fn load_config<T>(path: &str) -> Option<T> where T: DeserializeOwned {
         }
     }
 }
+
+#[cfg(test)]
+mod test {
+    use crate::load_config::init_load_config::load_global_config;
+    use crate::load_config::models::GlobalConfig;
+
+    #[test]
+    pub fn load_config_test() {
+        match load_global_config() {
+            None => {
+                println!("None");
+            }
+            Some(config) => {
+                println!("{:#?}", config);
+            }
+        }
+    }
+}
