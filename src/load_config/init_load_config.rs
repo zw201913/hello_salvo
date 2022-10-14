@@ -1,6 +1,5 @@
 use schemars::schema::RootSchema;
 use serde::de::DeserializeOwned;
-use serde::Deserialize;
 use crate::load_config::models::{EnvConfig, GlobalConfig};
 use tracing::info;
 

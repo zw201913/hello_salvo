@@ -18,6 +18,8 @@ fn start_server(ip: &str, port: usize) -> Server<TcpListener> {
 
 #[tokio::main]
 async fn main() {
+    // 初始化工具箱
+    utils::init();
     // 初始化日志
     logs::init();
     let span = span!(Level::WARN, "main");

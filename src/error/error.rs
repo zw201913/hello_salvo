@@ -26,8 +26,8 @@ impl GlobalError {
     }
 
     pub fn write(self, res: &mut Response) {
-        let statusCode = StatusCode::from_u16(self.code);
-        match statusCode {
+        let status_code = StatusCode::from_u16(self.code);
+        match status_code {
             Err(_) => {
                 res.set_status_code(StatusCode::OK);
             }

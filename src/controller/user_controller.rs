@@ -1,4 +1,3 @@
-use std::error::Error;
 use std::path::Path;
 use salvo::prelude::{Request, Response, Router, handler, Json, Extractible};
 use salvo::http::header::{self, HeaderValue};
@@ -29,7 +28,7 @@ async fn upload(file_name: FileName, req: &mut Request, res: &mut Response) {
                 res.render(format!("id:{} \nfile_name:{}  \n文件上传成功：{}", id, file_name.name, &dest_file));
             }
             Err(e) => {
-                GlobalError::new(500, "file store failure", e.description()).write(res);
+                GlobalError::new(500, "file store failure", e.to_string().as_str()).write(res);
             }
         }
     } else {
